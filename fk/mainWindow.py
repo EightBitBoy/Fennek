@@ -1,4 +1,5 @@
 import wx
+import musicList
 
 class MainWindow(wx.Frame):
 	def __init__(self, parent, title):
@@ -9,5 +10,7 @@ class MainWindow(wx.Frame):
 		menuBar = wx.MenuBar()
 		menuBar.Append(fennekMenu, "Fennek")
 		self.SetMenuBar(menuBar)
+		
+		self.musicList = musicList.MusicList(self)
 		
 		self.Show(True)
