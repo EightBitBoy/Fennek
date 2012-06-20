@@ -1,7 +1,8 @@
 import wx
+import mainWindow
 
 def run():
     application = wx.App(False)
-    frame = wx.Frame(None, wx.ID_ANY, "Hello World!")
+    frame = mainWindow.MainWindow(None, "Fennek")
     frame.Show(True)
     application.MainLoop()
