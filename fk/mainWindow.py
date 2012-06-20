@@ -8,7 +8,7 @@ class MainWindow(wx.Frame):
 		
 		fennekMenu = wx.Menu()
 		settingsItem = fennekMenu.Append(wx.ID_EXIT, "Settings", "Fennek settings")
-		self.Bind(wx.EVT_MENU, self.showSettingsDialog, settingsItem)
+		self.Bind(wx.EVT_MENU, self.OnSelectSettingsItem, settingsItem)
 		
 		menuBar = wx.MenuBar()
 		menuBar.Append(fennekMenu, "Fennek")
@@ -18,5 +18,5 @@ class MainWindow(wx.Frame):
 		
 		self.Show(True)
 	
-	def showSettingsDialog(self, e):
+	def OnSelectSettingsItem(self, e):
 		settingsWindow = settingsDialog.SettingsDialog()
