@@ -9,7 +9,6 @@ class SettingsDialog(wx.Dialog):
 		okButton = wx.Button(self, label = "OK")
 		okButton.Bind(wx.EVT_BUTTON, self.onClose)
 		
-		self.ShowModal()
-	
+		self.ShowModal()	
 	def onClose(self, e):
 		self.Destroy()
