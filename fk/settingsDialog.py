@@ -6,7 +6,7 @@ class SettingsDialog(wx.Dialog):
 		
 		#panel = wx.Panel(self)
 		
-		okButton = wx.Button(self, label = "OK")
+		okButton = wx.Button(self, label="OK")
 		okButton.Bind(wx.EVT_BUTTON, self.onClose)
 		
 		self.ShowModal()	

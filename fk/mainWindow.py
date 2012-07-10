@@ -1,14 +1,10 @@
 import wx
-from configurator import Configurator
 from musicList import MusicList
 from settingsDialog import SettingsDialog
 
 class MainWindow(wx.Frame):
 	def __init__(self, parent, title):
 		wx.Frame.__init__(self, parent, wx.ID_ANY ,title)
-		
-		configurator = Configurator()
-		config = configurator.getConfiguration()
 
 		fennekMenu = wx.Menu()
 		settingsItem = fennekMenu.Append(wx.ID_EXIT, "Settings", "Fennek settings")

@@ -1,11 +1,5 @@
-import os
+def updateConfig():
+	checkForExistingConfigFile()
 
-class Configurator:
-	def __init__(self):
-		print os.getcwdu()
-	
-	def getConfiguration(self):
-		pass
-
-class Configuration:
+def checkForExistingConfigFile():
 	pass
