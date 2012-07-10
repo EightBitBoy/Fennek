@@ -1,2 +1,2 @@
 class default:
-	i = 0
+	configFileName = "config.cfg"
