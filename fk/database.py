@@ -40,5 +40,13 @@ def clearDatabase():
 	connection.close()
 
 def fillDatabase():
+	connection = sqlite3.connect(config.default.dbFilePath)
+	cursor = connection.cursor()
+
 	for root, dirs, files in os.walk(config.libraryPath):
-		print dirs
+		for name in files:
+			if name.lower().endswith(".mp3"):
+				print name
+	
+	connection.commit()
+	connection.close()
