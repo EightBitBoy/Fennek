@@ -3,6 +3,7 @@ import os
 import sqlite3
 
 
+connection = sqlite3.connect(config.default.dbFilePath)
 
 def run(): # TODO rename this
 	checkForExistingDatabase()
@@ -15,7 +16,6 @@ def checkForExistingDatabase():
 		setUp()
 
 def setUp():
-	connection = sqlite3.connect(config.default.dbFilePath)
 	cursor = connection.cursor()
 	
 	cursor.execute("""
@@ -24,10 +24,8 @@ def setUp():
 	""")
 
 	connection.commit()
-	connection.close()
 
 def clear():
-	connection = sqlite3.connect(config.default.dbFilePath)
 	cursor = connection.cursor()
 	
 	cursor.execute("""
@@ -35,12 +33,10 @@ def clear():
 	""")
 
 	connection.commit()
-	connection.close()
 	
 	createTables()
 
 def createTables():
-	connection = sqlite3.connect(config.default.dbFilePath)
 	cursor = connection.cursor()
 	
 	cursor.execute("""
@@ -49,10 +45,8 @@ def createTables():
 	""")
 	
 	connection.commit()
-	connection.close()
-
+	
 def fill():
-	connection = sqlite3.connect(config.default.dbFilePath)
 	cursor = connection.cursor()
 
 	for root, dirs, files in os.walk(config.libraryPath): #@UnusedVariable
@@ -64,4 +58,3 @@ def fill():
 				{"name": unicode(name), "path": unicode(os.path.join(root, name)), "size": 0})
 
 	connection.commit()
-	connection.close()
