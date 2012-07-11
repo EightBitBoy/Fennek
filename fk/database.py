@@ -1,5 +1,7 @@
 import config
+import os
 import sqlite3
+
 
 
 def run(): # TODO rename this
@@ -25,5 +27,18 @@ def setUpDatabase():
 	connection.commit()
 	connection.close()
 
-def loadLibrary():
-	pass
+def clearDatabase():
+	connection = sqlite3.connect(config.default.dbFilePath)
+	cursor = connection.cursor()
+	
+	command = ("""
+		DROP TABLE IF EXISTS musicfiles
+	""")
+	cursor.execute(command)
+	
+	connection.commit()
+	connection.close()
+
+def fillDatabase():
+	for root, dirs, files in os.walk(config.libraryPath):
+		print dirs
