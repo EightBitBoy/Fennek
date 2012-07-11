@@ -8,9 +8,9 @@ def run():
 	configurator.updateConfig()
 
 	# test some database stuff
-	database.run()
-	database.clear()
-	database.fill()
+	database.checkDatabase()
+	#database.clear()
+	#database.fill()
 	
 	application = wx.App(False)
 	frame = mainWindow.MainWindow(None, "Fennek")
