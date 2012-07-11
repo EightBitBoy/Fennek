@@ -1,10 +1,29 @@
 import config
-import os
 import sqlite3
 
 
 def run(): # TODO rename this
-	filePath = os.path.join(os.getcwdu(), config.default.dbFileName)
+	checkForExistingDatabase()
+
+def checkForExistingDatabase():
+	try:
+		with open(config.default.dbFilePath) as f: #@UnusedVariable
+			pass
+	except IOError as e: #@UnusedVariable
+		setUpDatabase()
+
+def setUpDatabase():
+	connection = sqlite3.connect(config.default.dbFilePath)
+	cursor = connection.cursor()
 	
-	connection = sqlite3.connect(filePath)
+	command = ("""
+		CREATE TABLE musicfiles
+			(name text, path text, size integer)
+	""")
+	cursor.execute(command)
+	
+	connection.commit()
 	connection.close()
+
+def loadLibrary():
+	pass
