@@ -9,8 +9,8 @@ def run():
 
 	# test some database stuff
 	database.run()
-	database.clearDatabase()
-	database.fillDatabase()
+	database.clear()
+	database.fill()
 	
 	application = wx.App(False)
 	frame = mainWindow.MainWindow(None, "Fennek")

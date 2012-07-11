@@ -12,41 +12,56 @@ def checkForExistingDatabase():
 		with open(config.default.dbFilePath) as f: #@UnusedVariable
 			pass
 	except IOError as e: #@UnusedVariable
-		setUpDatabase()
+		setUp()
 
-def setUpDatabase():
+def setUp():
 	connection = sqlite3.connect(config.default.dbFilePath)
 	cursor = connection.cursor()
 	
-	command = ("""
+	cursor.execute("""
 		CREATE TABLE musicfiles
 			(name text, path text, size integer)
 	""")
-	cursor.execute(command)
-	
+
 	connection.commit()
 	connection.close()
 
-def clearDatabase():
+def clear():
 	connection = sqlite3.connect(config.default.dbFilePath)
 	cursor = connection.cursor()
 	
-	command = ("""
+	cursor.execute("""
 		DROP TABLE IF EXISTS musicfiles
 	""")
-	cursor.execute(command)
+
+	connection.commit()
+	connection.close()
+	
+	createTables()
+
+def createTables():
+	connection = sqlite3.connect(config.default.dbFilePath)
+	cursor = connection.cursor()
+	
+	cursor.execute("""
+		CREATE TABLE musicfiles
+			(name text, path text, size integer)
+	""")
 	
 	connection.commit()
 	connection.close()
 
-def fillDatabase():
+def fill():
 	connection = sqlite3.connect(config.default.dbFilePath)
 	cursor = connection.cursor()
 
-	for root, dirs, files in os.walk(config.libraryPath):
+	for root, dirs, files in os.walk(config.libraryPath): #@UnusedVariable
 		for name in files:
 			if name.lower().endswith(".mp3"):
-				print name
-	
+				cursor.execute("""
+					INSERT INTO musicfiles VALUES(:name, :path, :size)
+				""",
+				{"name": unicode(name), "path": unicode(os.path.join(root, name)), "size": 0})
+
 	connection.commit()
 	connection.close()

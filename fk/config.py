@@ -6,4 +6,4 @@ class default:
 	configFilePath = os.path.join(os.getcwdu(), configFileName)
 	dbFilePath = os.path.join(os.getcwdu(), dbFileName)
 
-libraryPath = "D:\Music"
+libraryPath = "D:\\Music"
